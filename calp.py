@@ -7,28 +7,57 @@ win.title("Calculator")
 win.iconbitmap('cal logo.ico')
 win.configure(background="white")
 
-def btn_click(item):
+# function for input button
+def btn_click(item,text=None):
     global expression
     expression = expression + str(item)
     input_text.set(expression)
 
 # function for clear the input field
 def bt_clear(): 
-    global expression 
+    global expression , out_expression
     expression = "" 
     input_text.set("")
 
+#function for backspace
 def bt_back():
-    global expression
+    global expression,out_expression
     expression = expression[:-1]
     input_text.set(expression)
 
- # to calculate the expression 
+# to calculate the expression 
 def bt_equal():
     global expression
     result = str(eval(expression))
     input_text.set(result)
-    expression = ""
+    expression = result
+
+# function for keyboard input
+def key_press(event):
+    global expression,out_expression
+    if event.char == '\r':
+        bt_equal()
+    elif event.char == '\b':
+        bt_back()
+    elif event.char == '\x1b':
+        bt_clear()
+    elif event.char == ',':
+        pass
+    elif event.char == '=':
+        pass
+    else:
+        btn_click(event.char)
+
+# binding the keys to the function
+def bind_keys():
+    for i in range(40,58):
+        win.bind(chr(i),key_press)
+    win.bind("<Return>",key_press)
+    win.bind("<BackSpace>",key_press)
+    win.bind("<Escape>",key_press)
+    win.bind("=",key_press)
+    
+    # win.bind("<Key>",key_press)
 
 # making a class for the buttons
 class button:
@@ -42,6 +71,7 @@ class button:
 expression = ""
  
 input_text = StringVar()
+bind_keys()
  
 # frame for the input field
 input_frame = Frame(win, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)

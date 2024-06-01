@@ -28,18 +28,37 @@ def bt_clear():
 
 #function for backspace
 def bt_back():
-
     global expression,out_expression
     if expression.endswith("**0.5"):
         expression = expression[:-5]
         out_expression = out_expression[:-1]
-    if expression.endswith("**2") or expression.endswith("**3"):
+    elif expression.endswith("**2") or expression.endswith("**3"):
+        expression = expression[:-3]
+        out_expression = out_expression[:-4]
+    elif expression.endswith("**"):
         expression = expression[:-2]
+        out_expression = out_expression[:-1]
+    elif expression.endswith("m.sin((m.pi / 180)*") or expression.endswith("m.cos((m.pi / 180)*") or expression.endswith("m.tan((m.pi / 180)*"):
+        expression = expression[:-19]
+        out_expression = out_expression[:-4]
+    elif expression.endswith("m.e"):
+        expression = expression[:-3]
+        out_expression = out_expression[:-1]
+    elif expression.endswith("m.log10("):
+        expression = expression[:-8]
+        out_expression = out_expression[:-4]
+    elif expression.endswith("m.log("):
+        expression = expression[:-6]
         out_expression = out_expression[:-3]
-    if expression.endswith("**"):
+    elif expression.endswith("m.fabs("):
+        expression = expression[:-7]
+        out_expression = out_expression[:-3]
+    elif expression.endswith("m.pi"):
+        expression = expression[:-4]
+        out_expression = out_expression[:-1]
+    else:
         expression = expression[:-1]
-    expression = expression[:-1]
-    out_expression = out_expression[:-1]
+        out_expression = out_expression[:-1]
     print(expression)
     input_text.set(out_expression)
 

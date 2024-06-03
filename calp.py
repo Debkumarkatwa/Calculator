@@ -4,7 +4,7 @@ win = Tk()
 win.geometry("312x330")  
 win.resizable(0, 0)  
 win.title("Calculator")
-win.iconbitmap('cal logo.ico')
+# win.iconbitmap('cal logo.ico')
 win.configure(background="white")
 
 # function for input button
@@ -21,7 +21,7 @@ def bt_clear():
 
 #function for backspace
 def bt_back():
-    global expression,out_expression
+    global expression
     expression = expression[:-1]
     input_text.set(expression)
 
@@ -34,7 +34,7 @@ def bt_equal():
 
 # function for keyboard input
 def key_press(event):
-    global expression,out_expression
+    global expression
     if event.char == '\r':
         bt_equal()
     elif event.char == '\b':

@@ -2,10 +2,10 @@ from tkinter import *
 import math as m
 
 win = Tk() 
-win.geometry("312x328")  
+win.geometry("312x348")  
 win.resizable(0, 0)  
 win.title("Calculator")
-# win.iconbitmap('cal logo.ico')
+win.iconbitmap('cal logo.ico')
 win.configure(background="white")
 
 # function for input button

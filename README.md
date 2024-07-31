@@ -1,2 +1,3 @@
 # Calculator
-My first project in python
+Try to upgrade my calculator project
+
